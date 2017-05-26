@@ -1,6 +1,9 @@
 {
   "name": "passport-twitter-examples-signin",
   "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies":
 	{
 		"body-parser": "1.7.0",
@@ -11,5 +14,5 @@
 		"mysql": "2.4.3",
 		"passport": "0.2.1",
 		"passport-facebook": "latest"
-  	}
+  }
 }

@@ -4,13 +4,16 @@
 </head>
 <body>
 <% if (!user) { %>
-  <div style="width:500px;height:180px;background-color:#ececec;padding:80px;margin-left:22%;margin-top:9%;">
-	<h2 style="font-size:40px;">Welcome! Please log in.</h2>
-	<a href="/auth/facebook"><img src="fb-login.jpg" width="151" height="24"></a>
+  <div>
+  	<h2>Welcome! Please log in.</h2>
+  	<a href="/auth/facebook"><img src="login-fb.png" width="200"></a>
 	</div>
 <% } else { %>
 	<h2>Hello, <%= user.username %>.</h2>
 <% } %>
+</body>
+</html>
+
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -22,6 +25,3 @@
   ga('send', 'pageview');
 
 </script>
-
-</body>
-</html>

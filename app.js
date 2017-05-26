@@ -1,13 +1,16 @@
-var express           =     require('express')
-  , passport          =     require('passport')
-  , util              =     require('util')
-  , FacebookStrategy  =     require('passport-facebook').Strategy
-  , session           =     require('express-session')
-  , cookieParser      =     require('cookie-parser')
-  , bodyParser        =     require('body-parser')
-  , config            =     require('./configuration/config')
-  , mysql             =     require('mysql')
-  , app               =     express();
+var express =  require('express')
+  , passport = require('passport')
+  , util =  require('util')
+  , uuid = require('node-uuid')
+  , FacebookStrategy = require('passport-facebook').Strategy
+  , session = require('express-session')
+  , cookieParser =  require('cookie-parser')
+  , bodyParser =  require('body-parser')
+  , config  =  require('./configuration/config')
+  , mysql  =  require('mysql')
+  , fileUpload = require('express-fileupload')
+  , path = require('path')
+  , app = express();
 
 //Define MySQL parameter in Config.js file.
 var connection = mysql.createConnection({
@@ -72,6 +75,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat', key: 'sid'}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
@@ -90,6 +94,19 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { successRedirect : '/', failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
+  });
+
+  app.post('/upload', function(req, res) {
+    if (!req.files)
+      return res.status(400).send('No files were uploaded.');
+
+    let upload = req.files.upload;
+    let filename = uuid.v4() + path.extname(req.files.upload.name)
+    upload.mv(path.join(process.env.PWD, '/uploads/', filename), function(err) {
+      if (err)
+        return res.status(500).send(err);
+      res.send('File uploaded!');
+    });
   });
 
 app.get('/logout', function(req, res){

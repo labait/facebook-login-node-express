@@ -1,27 +1,31 @@
 <html>
 <head>
-<title>Facebook Login using Node and Express</title>
+  <title>Red Boats</title>
 </head>
-<body>
-<% if (!user) { %>
-  <div>
-  	<h2>Welcome! Please log in.</h2>
-  	<a href="/auth/facebook"><img src="login-fb.png" width="200"></a>
-	</div>
-<% } else { %>
-	<h2>Hello, <?php  user.displayName ?>.</h2>
-<% } %>
-</body>
+  <body>
+    <h1>Red boats</h1>
+
+    <div class="#upload">
+      <form ref='uploadForm'
+        id='uploadForm'
+        action='/upload'
+        method='post'
+        encType="multipart/form-data">
+          <input type="file" accept="image/*" name="upload" >
+          <input type='submit' value='Upload!' />
+      </form>
+    </div>
+
+
+    <!-- ANALYTICS -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-100026000-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-100026000-1', 'auto');
-  ga('send', 'pageview');
-
-</script>

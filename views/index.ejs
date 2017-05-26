@@ -9,7 +9,7 @@
   	<a href="/auth/facebook"><img src="login-fb.png" width="200"></a>
 	</div>
 <% } else { %>
-	<h2>Hello, <%= user.username %>.</h2>
+	<h2>Hello, <?php  user.displayName ?>.</h2>
 <% } %>
 </body>
 </html>

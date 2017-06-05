@@ -1,2 +1,81 @@
-body {
-  background: white; }
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px; }
+
+.messaggio1 p {
+  font-family: 'myFont', sans-serif;
+  font-size: 50px;
+  color: #4A4A4A;
+  letter-spacing: 0;
+  line-height: 36px; }
+
+@font-face {
+  font-family: myFont;
+  src: url(../font/selfieblack.otf); }
+
+.hashtag p {
+  font-family: 'myHash', sans-serif;
+  font-size: 21px;
+  color: #FB5C5C;
+  letter-spacing: 0; }
+
+@font-face {
+  font-family: myHash;
+  src: url(../font/avenirnextheavy.otf); }
+
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.hidden {
+  display: none; }
+
+.messaggio {
+  text-align: center;
+  position: absolute;
+  bottom: 20px;
+  width: 100%; }
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.inputfile + label {
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  border: 4px solid #4A4A4A;
+  border-radius: 15px;
+  color: #4A4A4A; }
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: #4A4A4A;
+  color: #fff; }
+
+.inputfile + label {
+  cursor: pointer;
+  /* "hand" cursor */ }
+
+.carica {
+  padding-top: 10px; }
+  .carica p {
+    font-family: 'carica', sans-serif;
+    font-size: 20px;
+    color: #4A4A4A;
+    letter-spacing: 0;
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0px; }
+
+@font-face {
+  .carica {
+    font-family: carica;
+    src: url(../font/avenirnextheavy.otf); } }

@@ -1,1 +1,31 @@
 
+
+.logo{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin: 40px;
+}
+
+.messaggio1 p{
+  font-family: 'myFont', sans-serif;
+  font-size: 50px;
+  color: #4A4A4A;
+  letter-spacing: 0;
+  line-height: 36px;
+}
+@font-face {
+  font-family: myFont;
+  src: url(../font/selfieblack.otf);
+}
+
+.hashtag p{
+  font-family: 'myHash', sans-serif;
+  font-size: 21px;
+  color: #FB5C5C;
+  letter-spacing: 0;
+}
+@font-face {
+  font-family: myHash;
+  src: url(../font/avenirnextheavy.otf);
+}

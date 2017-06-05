@@ -1,4 +1,6 @@
-var express =  require('express')
+'use strict';
+
+const express =  require('express')
   , passport = require('passport')
   , util =  require('util')
   , uuid = require('node-uuid')
@@ -11,10 +13,11 @@ var express =  require('express')
   , fileUpload = require('express-fileupload')
   , path = require('path')
   , pug = require('pug')
+  , sendrid = require('./sendgrid.js')
   , app = express();
 
 //Define MySQL parameter in Config.js file.
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host     : config.host,
   user     : config.username,
   password : config.password,
@@ -123,14 +126,23 @@ app.get('/logout', function(req, res){
 });
 
 app.get('/thanks', function(req, res){
-    res.render('thanks');
+  res.render('thanks');
 });
-
-
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
 }
+
+
+app.get('/test/email', function(req, res){
+  sendrid.sendEmail(
+    'test@incode.it',
+    'molinari@incode.it',
+    'redboats - test email',
+    'this is a test email....'
+  )
+  res.send("sent test email");
+});
 
 app.listen(3000);

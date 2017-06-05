@@ -1,11 +1,11 @@
-facebook-login-node-express
-===========================
+# redboats
+a project to allow people to gain access to an event by connecting with fb
 
-Facebook login Script using Node and Express
+## how to run
+* git clone the project
+* npm i
+* npm i -g gulp
+* gulp
 
-Download the code and run <code>npm install</code> then <code>node app.js</code>
 
-Access the app at localhost:3000.
-
-Tutorial link : http://wp.me/p4ISPV-7w
-
+based on http://wp.me/p4ISPV-7w

@@ -6,7 +6,8 @@ var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
 
 
-gulp.task('default', ['browser-sync'], function () {
+//gulp.task('default', ['browser-sync'], function () {
+gulp.task('default', ['nodemon'], function () {
 });
 
 
@@ -22,7 +23,7 @@ gulp.task('sass:watch', function () {
 });
 
 
-gulp.task('browser-sync', ['nodemon', 'sass:watch'], function() {
+gulp.task('browser-sync', ['nodemon'], function() {
 	browserSync.init(null, {
 		proxy: "http://localhost:5000",
         files: ["public/**/*.*"],
@@ -32,7 +33,7 @@ gulp.task('browser-sync', ['nodemon', 'sass:watch'], function() {
 });
 
 
-gulp.task('nodemon', function (cb) {
+gulp.task('nodemon', [ 'sass:watch'], function (cb) {
 
 	var started = false;
 

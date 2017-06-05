@@ -11,6 +11,7 @@
     "cookie-parser": "1.3.2",
     "ejs": "1.0.0",
     "express": "4.8.7",
+    "express-ejs-extend": "0.0.1",
     "express-fileupload": "^0.1.3",
     "express-session": "1.7.6",
     "formidable": "^1.1.1",
@@ -20,6 +21,7 @@
     "mysql": "2.4.3",
     "node-uuid": "^1.4.8",
     "passport": "0.2.1",
-    "passport-facebook": "latest"
+    "passport-facebook": "latest",
+    "pug": "^2.0.0-rc.2"
   }
 }

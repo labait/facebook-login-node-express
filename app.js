@@ -10,6 +10,7 @@ var express =  require('express')
   , mysql  =  require('mysql')
   , fileUpload = require('express-fileupload')
   , path = require('path')
+  , pug = require('pug')
   , app = express();
 
 //Define MySQL parameter in Config.js file.
@@ -68,8 +69,13 @@ passport.use(new FacebookStrategy({
 ));
 
 
-app.set('views', __dirname + '/views');
+
+
+app.engine('ejs', require('express-ejs-extend')); // add this line
 app.set('view engine', 'ejs');
+//app.set('view engine', 'pug')
+app.set('views', __dirname + '/views');
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat', key: 'sid'}));

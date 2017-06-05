@@ -1,4 +1,11 @@
 
+p{
+  font-family: 'myP', sans-serif;
+}
+@font-face {
+  font-family: myP;
+  src: url(../font/montserrat-black.ttf);
+}
 
 .logo{
   display:flex;
@@ -27,5 +34,5 @@
 }
 @font-face {
   font-family: myHash;
-  src: url(../font/avenirnextheavy.otf);
+  src: url(../font/montserrat-black.ttf);
 }

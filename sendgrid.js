@@ -1,4 +1,5 @@
-//console.log(process.env.SENDGRID_API_KEY)
+require('dotenv').config()
+
 var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 
 exports.sendEmail = function(from, to, subject, body){
@@ -14,7 +15,6 @@ exports.sendEmail = function(from, to, subject, body){
     path: '/v3/mail/send',
     body: mail.toJSON()
   });
-
 
   sg.API(request, function (error, response) {
     if (error) {

@@ -14,22 +14,12 @@ const express =  require('express')
   , path = require('path')
   , pug = require('pug')
   , sendrid = require('./sendgrid.js')
+  , mongoose = require('mongoose')
+  , User = require("./models/user.js").User
   , app = express();
 
-//Define MySQL parameter in Config.js file.
-const connection = mysql.createConnection({
-  host     : config.host,
-  user     : config.username,
-  password : config.password,
-  database : config.database
-});
 
-//Connect to Database only if Config.js parameter is set.
-
-if(config.use_database==='true')
-{
-    connection.connect();
-}
+mongoose.connect(process.env.MONGO_URL);
 
 // Passport session setup.
 passport.serializeUser(function(user, done) {
@@ -42,30 +32,19 @@ passport.deserializeUser(function(obj, done) {
 
 
 // Use the FacebookStrategy within Passport.
-
 passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret:config.facebook_api_secret ,
-    callbackURL: config.callback_url
+    clientID: process.env.FACEBOOK_API_KEY,
+    clientSecret: process.env.FACEBOOK_API_SECRET ,
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function () {
-      //Check whether the User exists or not using profile.id
-      if(config.use_database==='true')
-      {
-      connection.query("SELECT * from user_info where user_id="+profile.id,function(err,rows,fields){
-        if(err) throw err;
-        if(rows.length===0)
-          {
-            console.log("There is no such user, adding now");
-            connection.query("INSERT into user_info(user_id,user_name) VALUES('"+profile.id+"','"+profile.username+"')");
-          }
-          else
-            {
-              console.log("User already exists in database");
-            }
-          });
-      }
+      User.find({ fbid: profile.id }, function(err, user) {
+        if (err) throw err;
+
+        // object of the user
+        console.log(user);
+      });
       return done(null, profile);
     });
   }
@@ -93,6 +72,11 @@ app.get('/', function(req, res){
 });
 
 
+app.get('/connect', function(req, res){
+  console.log(req.user)
+  res.render('connect', {user: req.user });
+});
+
 
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
@@ -102,7 +86,7 @@ app.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
 
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect : '/', failureRedirect: '/login' }),
+  passport.authenticate('facebook', { successRedirect : '/connect', failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
@@ -144,5 +128,23 @@ app.get('/test/email', function(req, res){
   )
   res.send("sent test email");
 });
+
+app.get('/test/db', function(req, res){
+  var test_user = new User({
+    firstname: 'firtname',
+    lastname: 'lastname',
+    email: 'test@incode.it',
+    fbid: '12345678'
+  });
+  test_user.save(function(err) {
+    if (err) throw err;
+    console.log('User created!');
+  });
+  res.send("testing db");
+});
+
+
+
+
 
 app.listen(3000);

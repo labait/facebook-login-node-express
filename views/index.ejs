@@ -1,32 +1,30 @@
 <% extend('layout') %>
 
+<div class="upload">
+  <div class="#upload">
+    <form ref='uploadForm'
+      id='uploadForm'
+      action='/upload'
+      method='post'
+      encType="multipart/form-data">
 
+        <input class="inputfile" type="file" accept="image/*" name="upload" id="file"  />
+        <label class="carica" for="file"><img src="photo-icon.svg" alt=""><p>CARICA</p></label>
 
-  <div class="upload">
-    <div class="#upload">
-      <form ref='uploadForm'
-        id='uploadForm'
-        action='/upload'
-        method='post'
-        encType="multipart/form-data">
-
-          <input class="inputfile" type="file" accept="image/*" name="upload" id="file"  />
-          <label class="carica" for="file"><img src="photo-icon.svg" alt=""><p>CARICA</p></label>
-
-          <!-- BOTTONE DA MOSTRARE UNA VOLTA CARICATO IL FILE -->
-          <input class="button hidden" type='submit' value='Upload!' />
-      </form>
-    </div>
+        <!-- BOTTONE DA MOSTRARE UNA VOLTA CARICATO IL FILE -->
+        <input class="button hidden" type='submit' value='Upload!' />
+    </form>
   </div>
+</div>
 
 
-
-  <div class="messaggio">
-    <div class="messaggio1">
-      <p>scatta e condividi<br>
-      la tua barchetta</p>
-    </div>
-    <div class="hashtag">
-      <p>#boatsontheterrace</p>
-    </div>
+<div class="messaggio">
+  <a href="/connect">test connect fb</a>
+  <div class="messaggio1">
+    <p>scatta e condividi<br>
+    la tua barchetta</p>
   </div>
+  <div class="hashtag">
+    <p>#boatsontheterrace</p>
+  </div>
+</div>

@@ -89,6 +89,8 @@ app.get('/', function(req, res){
   res.render('index', {user: req.user });
 });
 
+
+
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
 });
@@ -119,6 +121,11 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
+app.get('/thanks', function(req, res){
+    res.render('thanks');
+});
+
 
 
 function ensureAuthenticated(req, res, next) {

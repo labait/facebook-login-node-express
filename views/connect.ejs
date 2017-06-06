@@ -5,6 +5,6 @@
   	<a href="/auth/facebook"><img src="login-fb.png" width="200"></a>
 	</div>
 <% } else { %>
-	<h2>Hello, <%= user.displayName %></h2>
+	<h1>Hello, <%= user.displayName %>, <%= user.id %></h1>
   <a href="/logout">Logout</a>
 <% } %>

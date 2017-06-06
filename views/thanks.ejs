@@ -1,4 +1,8 @@
 <% extend('layout') %>
 
+<h1>thank you <%= user.displayName %></h1>
+<p>
+  An email has been sent to <%= user._json.email -%>
+</p>
 
-<h1>test</h1>
+<a href="/">back to home</a>

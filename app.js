@@ -133,7 +133,11 @@ app.post('/upload', function(req, res) {
 
 /* THAN YOU PAGE */
 app.get('/thanks', function(req, res){
-  res.render('thanks', { user: req.session.fb_user });
+  if(req.session.fb_user) {
+    res.render('thanks', { user: req.session.fb_user });
+  } else {
+    res.redirect('/');
+  }
 });
 
 function ensureAuthenticated(req, res, next) {

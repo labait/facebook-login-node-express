@@ -6,6 +6,7 @@ a project to allow people to gain access to an event by connecting with fb
 * git clone the project
 * npm i -g gulp
 * npm i
+* configure settings in config.js
 * set your api keys in .env
 
 ### every time

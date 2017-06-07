@@ -1,8 +1,7 @@
 # redboats
 a project to allow people to gain access to an event by connecting with fb
 
-
-##Environments
+## Environments
 ### development
 http://localhost:3000
 

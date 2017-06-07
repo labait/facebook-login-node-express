@@ -19,6 +19,7 @@ const express =  require('express')
   , app = express();
 
 
+var base_url = process.env.NODE_ENV=='production' ? 'http://redboats.herokuapp.com' : 'http://localhost:3000';
 mongoose.connect(process.env.MONGODB_URI);
 
 // Passport session setup.
@@ -35,7 +36,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_API_KEY,
     clientSecret: process.env.FACEBOOK_API_SECRET ,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: base_url+"/auth/facebook/callback",
     profileFields: ['id', 'displayName', 'photos', 'email', 'name']
   },
   function(accessToken, refreshToken, profile, done) {

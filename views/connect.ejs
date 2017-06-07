@@ -1,16 +1,15 @@
 <% extend('layout') %>
 
-<div id="main" class="content-connect" >
-  <div class="row">
-    <div class="col-xs-12">
-      <% if (!user) { %>
-        <div>
-        	<a href="/auth/facebook"><img src="login-fb.png" width="200"></a>
-      	</div>
-      <% } else { %>
-      	<h1>Hello, <%= user.displayName %>, <%= user.id %></h1>
-        <a href="/logout">Logout</a>
-      <% } %>
-    </div>
+
+<div id="content-thanks">
+  <div class="content">
+    <% if (!user) { %>
+      <div>
+        <a href="/auth/facebook"><img src="login-fb.png" width="200"></a>
+      </div>
+    <% } else { %>
+      <h1>Hello, <%= user.displayName %>, <%= user.id %></h1>
+      <a href="/logout">Logout</a>
+    <% } %>
   </div>
 </div>

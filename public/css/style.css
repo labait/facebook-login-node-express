@@ -23,6 +23,8 @@ p {
   text-align: center;
   height: 100vh;
   position: relative; }
+  #main .content {
+    font-size: 2em; }
 
 .js .inputfile {
   width: 0.1px;
@@ -232,8 +234,6 @@ p {
 
 #content-index .content {
   text-align: center; }
-  #content-index .content a.next {
-    font-size: 2em; }
 
 #content-index #message {
   text-align: center;
@@ -242,9 +242,8 @@ p {
   width: 100%; }
   #content-index #message .text p {
     font-family: 'myFont', sans-serif;
-    font-size: 50px;
+    font-size: 4em;
     color: #4A4A4A;
-    letter-spacing: 0;
     line-height: 36px; }
   #content-index #message .hashtag p {
     font-family: 'myHash', sans-serif;
@@ -266,13 +265,13 @@ p {
   width: 200px;
   height: 60px;
   text-align: center;
-  border: 4px solid #4A4A4A;
+  border: 4px solid $color2;
   border-radius: 15px;
-  color: #4A4A4A;
+  color: $color2;
 }
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: #4A4A4A;
+    background-color: $color2;
     color: #fff;
 }
 .inputfile + label {
@@ -284,7 +283,7 @@ p {
   p{
     line-height:60px
     font-size: 20px;
-    color: #4A4A4A;
+    color: $color2;
     letter-spacing: 0;
     display: inline-block;
     padding-left: 20px;

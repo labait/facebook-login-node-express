@@ -236,9 +236,11 @@ p {
   text-align: center; }
 
 #content-index #message {
+  background-color: white;
   text-align: center;
   position: absolute;
-  bottom: 30px;
+  bottom: 0;
+  padding-bottom: 30px;
   width: 100%; }
   #content-index #message .text p {
     font-family: 'myFont', sans-serif;

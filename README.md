@@ -7,6 +7,7 @@ a project to allow people to gain access to an event by connecting with fb
 http://localhost:3000
 
 ### production
+
 http://redboats.herokuapp.com/
 to update app in production
 ```

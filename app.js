@@ -21,33 +21,8 @@ const express =  require('express')
   , app = express();
 
 
-var base_url = process.env.NODE_ENV=='production' ? 'http://redboats.herokuapp.com' : 'http://localhost:3000';
+
 mongoose.connect(process.env.MONGODB_URI);
-
-// Passport session setup.
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-
-
-// Use the FacebookStrategy within Passport.
-passport.use(new FacebookStrategy({
-    clientID: process.env.FACEBOOK_API_KEY,
-    clientSecret: process.env.FACEBOOK_API_SECRET ,
-    callbackURL: base_url+"/auth/facebook/callback",
-    profileFields: ['id', 'displayName', 'photos', 'email', 'name']
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-));
-
 
 
 
@@ -65,6 +40,29 @@ app.use(fileUpload());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){
+  var base_url = req.protocol + '://' + req.get('host');
+  // Passport session setup.
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+  });
+  // Use the FacebookStrategy within Passport.
+  passport.use(new FacebookStrategy({
+      clientID: process.env.FACEBOOK_API_KEY,
+      clientSecret: process.env.FACEBOOK_API_SECRET ,
+      callbackURL: base_url+"/auth/facebook/callback",
+      profileFields: ['id', 'displayName', 'photos', 'email', 'name']
+    },
+    function(accessToken, refreshToken, profile, done) {
+      process.nextTick(function () {
+        return done(null, profile);
+      });
+    }
+  ));
+
   res.render('index', {user: req.user });
 });
 

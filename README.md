@@ -46,5 +46,5 @@ mongodump -h ds163711.mlab.com:63711 -d heroku_1x2n4nwf -u heroku_1x2n4nwf -p ck
 mongorestore -d redboats $HOME/Desktop/redboats/heroku_1x2n4nwf/
 ```
 
-
-
+# references
+* aws s3 upload http://www.joshsgman.com/upload-to-and-get-images-from-amazon-s3-with-node-js/

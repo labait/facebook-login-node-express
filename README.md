@@ -1,15 +1,16 @@
 # redboats
 a project to allow people to gain access to an event by connecting with fb
 
+
 ##Environments
 ### development
 http://localhsot:3000
 ### production
 http://redboats.herokuapp.com/
 to update app in production
-´´´
+```
 git push heroku master
-´´´
+```
 and cross the figners... :-)
 
 ## how to run

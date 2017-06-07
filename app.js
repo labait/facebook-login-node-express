@@ -19,7 +19,7 @@ const express =  require('express')
   , app = express();
 
 
-mongoose.connect(process.env.MONGO_URL);
+mongoose.connect(process.env.MONGODB_URI);
 
 // Passport session setup.
 passport.serializeUser(function(user, done) {

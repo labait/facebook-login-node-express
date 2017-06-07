@@ -1,9 +1,18 @@
 
-p{
-  font-family: 'myP', sans-serif;
-}
+
 @font-face {
   font-family: myP;
+  src: url("font/montserrat-black.ttf");
+}
+
+
+@font-face {
+  font-family: myFont;
+  src: url(../font/selfieblack.otf);
+}
+
+@font-face {
+  font-family: myHash;
   src: url(../font/montserrat-black.ttf);
 }
 
@@ -14,25 +23,12 @@ p{
   margin: 40px;
 }
 
-.messaggio1 p{
-  font-family: 'myFont', sans-serif;
-  font-size: 50px;
-  color: #4A4A4A;
-  letter-spacing: 0;
-  line-height: 36px;
-}
-@font-face {
-  font-family: myFont;
-  src: url(../font/selfieblack.otf);
+p{
+  font-family: 'myP', sans-serif;
 }
 
-.hashtag p{
-  font-family: 'myHash', sans-serif;
-  font-size: 21px;
-  color: #FB5C5C;
-  letter-spacing: 0;
-}
-@font-face {
-  font-family: myHash;
-  src: url(../font/montserrat-black.ttf);
+#main {
+  text-align: center;
+  height: 100vh;
+  position: relative;
 }

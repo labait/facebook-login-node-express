@@ -123,12 +123,13 @@ app.post('/upload', function(req, res) {
   if (!req.files)
     return res.status(400).send('No files were uploaded.');
 
-  let upload = req.files.upload;
-  let filename = uuid.v4() + path.extname(req.files.upload.name)
-  upload.mv(path.join(process.env.PWD, '/uploads/', filename), function(err) {
+  let upload1 = req.files.upload1;
+  let filename = uuid.v4() + path.extname(req.files.upload1.name)
+  upload1.mv(path.join(process.env.PWD, '/uploads/', filename), function(err) {
     if (err)
       return res.status(500).send(err);
-    res.send('File uploaded!');
+    //res.send('File uploaded!');
+    res.redirect('/connect');
   });
 });
 

@@ -16,6 +16,8 @@ const express =  require('express')
   , sendrid = require('./sendgrid.js')
   , mongoose = require('mongoose')
   , User = require("./models/user.js").User
+  , AWS = require('aws-sdk')
+  , fs = require('fs')
   , app = express();
 
 
@@ -81,18 +83,31 @@ app.get('/connect', function(req, res){
       } else {
         new User({
           first_name: req.user._json.first_name,
-          last_name: req.user._json.first_name,
+          last_name: req.user._json.last_name,
           email: req.user._json.email,
-          fbid: req.user._json.id
+          fbid: req.user._json.id,
+          image_url: req.session.s3_url
         }).save(function(err) {
           if (err) throw err;
-          sendrid.sendEmail(
-            config.user_email_from,
-            req.user._json.email,
-            config.user_email_subject,
-            'Thank you for your registration!'
-          )
+
           console.log('User created!');
+          // message to user
+          sendrid.sendEmail(
+            config.user_email_from, //from
+            req.user._json.email, //to
+            config.user_email_subject, //subject
+            'Thank you for your registration!' // body
+          )
+          // message to user
+          sendrid.sendEmail(
+            config.staff_email_from, //from
+            config.staff_email, //to
+            config.staff_email_subject+" "+req.user._json.email, // body
+            req.user._json.first_name+" "+req.user._json.last_name+" "+req.session.s3_url // body
+          )
+
+
+
           res.redirect('/thanks');
           //res.render('thanks', {user: req.user });
         });
@@ -125,12 +140,42 @@ app.post('/upload', function(req, res) {
 
   let upload1 = req.files.upload1;
   let filename = uuid.v4() + path.extname(req.files.upload1.name)
+  AWS.config.update({
+    "accessKeyId": process.env.S3_ACCESS_KEY_ID,
+    "secretAccessKey": process.env.S3_SECRET_ACCESS_KEY,
+    "region": "eu-central-1"
+  });
+
+  var s3 = new AWS.S3();
+  //var bucketParams = {Bucket: 'redboats'};
+  //s3.createBucket(bucketParams)
+  var s3Bucket = new AWS.S3( { params: {Bucket: config.s3_bucket_name} } )
+  //buf = new Buffer(upload1.data.replace(/^data:image\/\w+;base64,/, ""),'base64');
+  var data = {
+      Key: filename,
+      Body: upload1.data,
+      ContentEncoding: 'base64',
+      ContentType: upload1.mimetype,
+      ACL:'public-read'
+  };
+  s3Bucket.putObject(data, function(err, data){
+    if (err){
+      return res.status(500).send(err);
+      console.log('Error uploading data: ', data);
+    } else {
+      req.session.s3_url = config.s3_bucket_base_url+filename;
+      console.log('succesfully uploaded the image!');
+      res.redirect('/connect');
+    }
+  });
+  /*
   upload1.mv(path.join(process.env.PWD, '/uploads/', filename), function(err) {
     if (err)
       return res.status(500).send(err);
     //res.send('File uploaded!');
     res.redirect('/connect');
   });
+  */
 });
 
 /* THAN YOU PAGE */

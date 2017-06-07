@@ -11,6 +11,10 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <!-- loading -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay_progress.min.js"></script>
+
     <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" src="/main.js"></script>
   </head>
@@ -18,7 +22,7 @@
 
     <div id="main" class="container-fluid">
       <header>
-        <div class="logo"><img src="betty-logo.svg" alt=""></div>
+        <a href="/"><div class="logo"><img src="betty-logo.svg" alt=""></div></a>
       </header>
       <%- content %>
     </div>

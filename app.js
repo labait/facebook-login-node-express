@@ -171,4 +171,5 @@ app.get('/test/db', function(req, res){
 });
 
 /* LISTINING TO PORT... */
-app.listen(3000);
+var port = process.env.PORT || 3000;
+app.listen(port);

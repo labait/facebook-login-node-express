@@ -1,8 +1,13 @@
-p {
-  font-family: 'myP', sans-serif; }
-
 @font-face {
   font-family: myP;
+  src: url("font/montserrat-black.ttf"); }
+
+@font-face {
+  font-family: myFont;
+  src: url(../font/selfieblack.otf); }
+
+@font-face {
+  font-family: myHash;
   src: url(../font/montserrat-black.ttf); }
 
 .logo {
@@ -11,36 +16,17 @@ p {
   align-items: center;
   margin: 40px; }
 
-.messaggio1 p {
-  font-family: 'myFont', sans-serif;
-  font-size: 50px;
-  color: #4A4A4A;
-  letter-spacing: 0;
-  line-height: 36px; }
+p {
+  font-family: 'myP', sans-serif; }
 
-@font-face {
-  font-family: myFont;
-  src: url(../font/selfieblack.otf); }
+#main {
+  text-align: center;
+  height: 100vh;
+  position: relative; }
+  #main .content {
+    font-size: 2em; }
 
-.hashtag p {
-  font-family: 'myHash', sans-serif;
-  font-size: 21px;
-  color: #FB5C5C;
-  letter-spacing: 0; }
-
-@font-face {
-  font-family: myHash;
-  src: url(../font/montserrat-black.ttf); }
-
-.upload {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.hidden {
-  display: none; }
-
-.inputfile {
+.js .inputfile {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -49,33 +35,262 @@ p {
   z-index: -1; }
 
 .inputfile + label {
+  max-width: 80%;
+  font-size: 1.25rem;
+  /* 20px */
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.625rem 1.25rem;
+  /* 10px 20px */ }
+
+.no-js .inputfile + label {
+  display: none; }
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px; }
+
+.inputfile + label * {
+  /* pointer-events: none; */
+  /* in case of FastClick lib use */ }
+
+.inputfile + label svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  /* 4px */
+  margin-right: 0.25em;
+  /* 4px */ }
+
+/* style 1 */
+.inputfile-1 + label {
+  color: #f1e5e6;
+  background-color: #d3394c; }
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+  background-color: #722040; }
+
+/* style 2 */
+.inputfile-2 + label {
+  color: #d3394c;
+  border: 2px solid currentColor; }
+
+.inputfile-2:focus + label,
+.inputfile-2.has-focus + label,
+.inputfile-2 + label:hover {
+  color: #722040; }
+
+/* style 3 */
+.inputfile-3 + label {
+  color: #d3394c; }
+
+.inputfile-3:focus + label,
+.inputfile-3.has-focus + label,
+.inputfile-3 + label:hover {
+  color: #722040; }
+
+/* style 4 */
+.inputfile-4 + label {
+  color: #d3394c; }
+
+.inputfile-4:focus + label,
+.inputfile-4.has-focus + label,
+.inputfile-4 + label:hover {
+  color: #722040; }
+
+.inputfile-4 + label figure {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #d3394c;
+  display: block;
+  padding: 20px;
+  margin: 0 auto 10px; }
+
+.inputfile-4:focus + label figure,
+.inputfile-4.has-focus + label figure,
+.inputfile-4 + label:hover figure {
+  background-color: #722040; }
+
+.inputfile-4 + label svg {
+  width: 100%;
+  height: 100%;
+  fill: #f1e5e6; }
+
+/* style 5 */
+.inputfile-5 + label {
+  color: #d3394c; }
+
+.inputfile-5:focus + label,
+.inputfile-5.has-focus + label,
+.inputfile-5 + label:hover {
+  color: #722040; }
+
+.inputfile-5 + label figure {
+  width: 100px;
+  height: 135px;
+  background-color: #d3394c;
+  display: block;
+  position: relative;
+  padding: 30px;
+  margin: 0 auto 10px; }
+
+.inputfile-5:focus + label figure,
+.inputfile-5.has-focus + label figure,
+.inputfile-5 + label:hover figure {
+  background-color: #722040; }
+
+.inputfile-5 + label figure::before,
+.inputfile-5 + label figure::after {
+  width: 0;
+  height: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.inputfile-5 + label figure::before {
+  border-top: 20px solid #dfc8ca;
+  border-left: 20px solid transparent; }
+
+.inputfile-5 + label figure::after {
+  border-bottom: 20px solid #722040;
+  border-right: 20px solid transparent; }
+
+.inputfile-5:focus + label figure::after,
+.inputfile-5.has-focus + label figure::after,
+.inputfile-5 + label:hover figure::after {
+  border-bottom-color: #d3394c; }
+
+.inputfile-5 + label svg {
+  width: 100%;
+  height: 100%;
+  fill: #f1e5e6; }
+
+/* style 6 */
+.inputfile-6 + label {
+  color: #d3394c; }
+
+.inputfile-6 + label {
+  border: 1px solid #d3394c;
+  background-color: #f1e5e6;
+  padding: 0; }
+
+.inputfile-6:focus + label,
+.inputfile-6.has-focus + label,
+.inputfile-6 + label:hover {
+  border-color: #722040; }
+
+.inputfile-6 + label span,
+.inputfile-6 + label strong {
+  padding: 0.625rem 1.25rem;
+  /* 10px 20px */ }
+
+.inputfile-6 + label span {
+  width: 200px;
+  min-height: 2em;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: top; }
+
+.inputfile-6 + label strong {
+  height: 100%;
+  color: #f1e5e6;
+  background-color: #d3394c;
+  display: inline-block; }
+
+.inputfile-6:focus + label strong,
+.inputfile-6.has-focus + label strong,
+.inputfile-6 + label:hover strong {
+  background-color: #722040; }
+
+@media screen and (max-width: 50em) {
+  .inputfile-6 + label strong {
+    display: block; } }
+
+#content-index #upload-form .inputfile + label figure {
+  background-color: #FB5C5C; }
+
+#content-index #upload-form .inputfile + label {
+  color: #FB5C5C;
+  font-size: 2em; }
+
+#content-index #upload-form .inputfile + label {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center; }
+
+#content-index .content {
+  text-align: center; }
+
+#content-index #message {
+  background-color: white;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 30px;
+  width: 100%; }
+  #content-index #message .text p {
+    font-family: 'myFont', sans-serif;
+    font-size: 4em;
+    color: #4A4A4A;
+    line-height: 36px; }
+  #content-index #message .hashtag p {
+    font-family: 'myHash', sans-serif;
+    font-size: 21px;
+    color: #FB5C5C;
+    letter-spacing: 0; }
+
+/*
+// PERSONALIZZAZIONE PULSANTE
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
   width: 200px;
   height: 60px;
   text-align: center;
-  border: 4px solid #4A4A4A;
+  border: 4px solid $color2;
   border-radius: 15px;
-  color: #4A4A4A; }
-
+  color: $color2;
+}
 .inputfile:focus + label,
 .inputfile + label:hover {
-  background-color: #4A4A4A;
-  color: #fff; }
-
+    background-color: $color2;
+    color: #fff;
+}
 .inputfile + label {
-  cursor: pointer; }
+	cursor: pointer;
+}
 
 .carica {
-  padding-top: 10px; }
-  .carica p {
+  padding-top: 10px;
+  p{
+    line-height:60px
     font-size: 20px;
-    color: #4A4A4A;
+    color: $color2;
     letter-spacing: 0;
     display: inline-block;
     padding-left: 20px;
-    margin-bottom: 0px; }
-
-.messaggio {
-  text-align: center;
-  position: absolute;
-  bottom: 20px;
-  width: 100%; }
+    margin-bottom: 0px;
+    width:200px;height:60px;
+  }
+}
+*/

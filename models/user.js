@@ -4,6 +4,7 @@ var UserSchema = new mongoose.Schema({
   first_name: String,
   last_name: String,
   email: String,
+  image_url: String,
   fbid: {
     type: String,
     index: true

@@ -1,0 +1,92 @@
+// upload input from https://tympanus.net/Tutorials/CustomFileInputs/
+
+
+#content-index{
+  #upload-form {
+    .inputfile + label figure {
+      background-color: $color1;
+    }
+    .inputfile + label {
+      color: $color1;
+      font-size: 2em;
+    }
+    .inputfile + label {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+  }
+
+  .content {
+    text-align: center;
+    a.next {
+
+    }
+  }
+
+  #message {
+    background-color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: $spacer*2; 
+    width: 100%;
+    .text p{
+      font-family: 'myFont', sans-serif;
+      font-size: 4em;
+      color: $color2;
+      line-height: 36px;
+    }
+    .hashtag p{
+      font-family: 'myHash', sans-serif;
+      font-size: 21px;
+      color: $color1;
+      letter-spacing: 0;
+    }
+  }
+}
+
+
+
+/*
+// PERSONALIZZAZIONE PULSANTE
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  border: 4px solid $color2;
+  border-radius: 15px;
+  color: $color2;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: $color2;
+    color: #fff;
+}
+.inputfile + label {
+	cursor: pointer;
+}
+
+.carica {
+  padding-top: 10px;
+  p{
+    line-height:60px
+    font-size: 20px;
+    color: $color2;
+    letter-spacing: 0;
+    display: inline-block;
+    padding-left: 20px;
+    margin-bottom: 0px;
+    width:200px;height:60px;
+  }
+}
+*/

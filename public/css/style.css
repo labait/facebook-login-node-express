@@ -243,9 +243,9 @@ p {
   width: 100%; }
   #content-index #message .text p {
     font-family: 'myFont', sans-serif;
-    font-size: 4em;
+    font-size: 3.7em;
     color: #4A4A4A;
-    line-height: 36px; }
+    line-height: 40px; }
   #content-index #message .hashtag p {
     font-family: 'myHash', sans-serif;
     font-size: 21px;
@@ -293,3 +293,13 @@ p {
   }
 }
 */
+.content h1 {
+  padding-top: 60px;
+  padding-bottom: 30px; }
+
+a {
+  color: #FB5C5C; }
+
+a:hover {
+  color: #4A4A4A;
+  text-decoration: none; }

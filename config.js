@@ -1,7 +1,7 @@
 module.exports={
 	"key": "value",
 	"user_email_from": "test@incode.it",
-	"user_email_subject": 'redboats - thank you',
+	"user_email_subject": 'redboats - grazie',
 
 	"staff_email_from": "noreply@redboats.herokuapp.com",
 	"staff_email": "team@incode.it",

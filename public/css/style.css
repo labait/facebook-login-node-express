@@ -1,6 +1,6 @@
 @font-face {
   font-family: myP;
-  src: url("font/montserrat-black.ttf"); }
+  src: url("../font/montserrat-regular.ttf"); }
 
 @font-face {
   font-family: myFont;
@@ -229,7 +229,7 @@ p {
   text-align: center;
   font-size: 1.5em;
   color: #FB5C5C;
-  padding-top: 45px; }
+  padding-top: 60px; }
 
 #content-index .content {
   text-align: center; }

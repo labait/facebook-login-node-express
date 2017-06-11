@@ -95,7 +95,7 @@ app.get('/connect', function(req, res){
             config.user_email_from, //from
             req.user._json.email, //to
             config.user_email_subject, //subject
-            'Grazie per la registrazione!' // body
+            "Grazie per la registrazione! Ti aspettiamo il 15 giugno dalle 15 alle 21 al concerto live di presentazione dell'album Boats on the terraces di Betty Vittori. Collegandoti a https://bettyvittori.bandcamp.com/yum e inserendo il codice che ti verrà inviato a breve potrai scaricare  gratuitamente quattro brani dell'album. " // body
           )
           // message to user
           sendrid.sendEmail(

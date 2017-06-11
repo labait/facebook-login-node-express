@@ -95,7 +95,7 @@ app.get('/connect', function(req, res){
             config.user_email_from, //from
             req.user._json.email, //to
             config.user_email_subject, //subject
-            'Thank you for your registration!' // body
+            'Grazie per la registrazione!' // body
           )
           // message to user
           sendrid.sendEmail(

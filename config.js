@@ -4,7 +4,7 @@ module.exports={
 	"user_email_subject": 'redboats - grazie',
 
 	"staff_email_from": "noreply@redboats.herokuapp.com",
-	"staff_email": "team@incode.it",
+	"staff_email": "redboats.team@gmail.com",
 	"staff_email_subject": "redboats - new user",
 
 	"s3_bucket_name": "laba.redboats",

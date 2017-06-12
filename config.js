@@ -9,6 +9,6 @@ module.exports={
 
 	"s3_bucket_name": "laba.redboats",
 	"s3_bucket_base_url": "https://s3.eu-central-1.amazonaws.com/laba.redboats/",
-	"send_download_codes": false,
+
 	"download_code_redem_url": "https://bettyvittori.bandcamp.com/yum"
 }

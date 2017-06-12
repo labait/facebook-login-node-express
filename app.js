@@ -16,22 +16,20 @@ const express =  require('express')
   , sendrid = require('./sendgrid.js')
   , mongoose = require('mongoose')
   , User = require("./models/user.js").User
+  , Code = require("./models/code.js").Code
   , AWS = require('aws-sdk')
   , fs = require('fs')
+  , ejs = require('ejs')
   , app = express();
 
 
 
 //mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect(process.env.MONGODB_URI);
-
-
-
 app.engine('ejs', require('express-ejs-extend')); // add this line
 app.set('view engine', 'ejs');
 //app.set('view engine', 'pug')
 app.set('views', __dirname + '/views');
-
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'keyboard cat', key: 'sid'}));
@@ -80,22 +78,34 @@ app.get('/connect', function(req, res){
           message: "ti sei già registrato!"
         });
       } else {
+        var code = getDownloadCode();
+
         new User({
           first_name: req.user._json.first_name,
           last_name: req.user._json.last_name,
           email: req.user._json.email,
           fbid: req.user._json.id,
-          image_url: req.session.s3_url
+          image_url: req.session.s3_url,
+          code: code
         }).save(function(err) {
           if (err) throw err;
-
           console.log('User created!');
+          var body = ejs.render(
+            fs.readFileSync(
+              __dirname + '/views/mail_user.ejs', 'utf8'),
+              {
+                config: config,
+                user: req.user,
+                code: code
+              }
+          );
           // message to user
           sendrid.sendEmail(
             config.user_email_from, //from
             req.user._json.email, //to
             config.user_email_subject, //subject
-            "Grazie per la registrazione! Ti aspettiamo il 15 giugno alle 21 al concerto live di presentazione dell'album Boats on the terraces di Betty Vittori. Collegandoti a https://bettyvittori.bandcamp.com/yum e inserendo il codice che ti verrà inviato a breve potrai scaricare  gratuitamente quattro brani dell'album. " // body
+            body
+            //"Grazie per la registrazione! Ti aspettiamo il 15 giugno alle 21 al concerto live di presentazione dell'album Boats on the terraces di Betty Vittori. Collegandoti a https://bettyvittori.bandcamp.com/yum e inserendo il codice che ti verrà inviato a breve potrai scaricare  gratuitamente quattro brani dell'album. " // body
           )
           // message to user
           sendrid.sendEmail(
@@ -104,9 +114,6 @@ app.get('/connect', function(req, res){
             config.staff_email_subject+" "+req.user._json.email, // body
             req.user._json.first_name+" "+req.user._json.last_name+" "+req.session.s3_url // body
           )
-
-
-
           res.redirect('/thanks');
           //res.render('thanks', {user: req.user });
         });
@@ -117,20 +124,24 @@ app.get('/connect', function(req, res){
   }
 });
 
+
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', { user: req.user });
 });
 
 app.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
 
+
 app.get('/auth/facebook/callback',passport.authenticate('facebook', { successRedirect : '/connect', failureRedirect: '/login' }), function(req, res) {
   res.redirect('/');
 });
+
 
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
 
 // UPLOAD
 app.post('/upload', function(req, res) {
@@ -177,6 +188,7 @@ app.post('/upload', function(req, res) {
   */
 });
 
+
 /* THAN YOU PAGE */
 app.get('/thanks', function(req, res){
   if(req.session.fb_user) {
@@ -186,35 +198,24 @@ app.get('/thanks', function(req, res){
   }
 });
 
+
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
   res.redirect('/login')
 }
 
-/* TEST URLS */
-app.get('/test/email', function(req, res){
-  sendrid.sendEmail(
-    'test@incode.it',
-    'molinari@incode.it',
-    'redboats - test email',
-    'this is a test email....'
-  )
-  res.send("sent test email");
-});
-
-app.get('/test/db', function(req, res){
-  var test_user = new User({
-    firstname: 'firtname',
-    lastname: 'lastname',
-    email: 'test@incode.it',
-    fbid: '12345678'
-  });
-  test_user.save(function(err) {
-    if (err) throw err;
-    console.log('User created!');
-  });
-  res.send("testing db");
-});
+function getDownloadCode() {
+  var code = false;
+  var c = Code.findOneAndUpdate({
+    //query: { sent: null },
+    query: { sent: {$exists: false} },
+    update: { sent: true },
+    new: true
+  })
+  if(c) code = c.code;
+  console.log("============================================= "+code);
+  return code;
+}
 
 /* LISTINING TO PORT... */
 var port = process.env.PORT || 3000;

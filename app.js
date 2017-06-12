@@ -76,8 +76,8 @@ app.get('/connect', function(req, res){
       if (err) throw err;
       if(u.length>0) {
         res.render('message', {
-          title: "Error",
-          message: "user already registered!"
+          title: "Basta una volta",
+          message: "ti sei già registrato!"
         });
       } else {
         new User({
